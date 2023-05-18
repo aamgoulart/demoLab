@@ -5,15 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import * as Highcharts from 'highcharts';
-import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartComponent } from './chart/chart.component';
-
-
+import { NgChartsModule } from 'ng2-charts';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
+import {MatButtonModule} from '@angular/material/button';
+import { BluetoothComponent } from './bluetooth/bluetooth.component';
+import { WebBluetoothModule } from '@manekinekko/angular-web-bluetooth';
 @NgModule({
   declarations: [
     AppComponent,
-    ChartComponent
+    ChartComponent,
+    BarChartComponent,
+    BluetoothComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,12 @@ import { ChartComponent } from './chart/chart.component';
       registrationStrategy: 'registerWhenStable:30000'
     }),
     BrowserAnimationsModule,
-    HighchartsChartModule
+    NgChartsModule,
+    MatButtonModule,
+    WebBluetoothModule.forRoot({
+      enableTracing: true // or false, this will enable logs in the browser's console
+    }),
+    AppRoutingModule
     ],
   providers: [
   ],

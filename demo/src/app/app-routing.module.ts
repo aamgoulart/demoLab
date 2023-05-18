@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BluetoothComponent } from './bluetooth/bluetooth.component';
 
 const routes: Routes = [];
 
