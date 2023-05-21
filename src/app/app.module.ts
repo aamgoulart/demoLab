@@ -11,6 +11,7 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
 import {MatButtonModule} from '@angular/material/button';
 import { BluetoothComponent } from './bluetooth/bluetooth.component';
 import { WebBluetoothModule } from '@manekinekko/angular-web-bluetooth';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import { WebBluetoothModule } from '@manekinekko/angular-web-bluetooth';
     WebBluetoothModule.forRoot({
       enableTracing: true // or false, this will enable logs in the browser's console
     }),
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
     ],
   providers: [
   ],

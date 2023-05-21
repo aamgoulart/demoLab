@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { WebSocketService } from './web-socket.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'demo';
+  message = '';
+
+  constructor(public webSocketService: WebSocketService) {
+    this.webSocketService.connect();
+  }
+
+  sendMessage(message: string) {
+    this.webSocketService.sendMessage(message);
+  }
+
+  ngOnDestroy() {
+    this.webSocketService.close();
+  }
+
+  close(){
+    this.webSocketService.close();
+
+  }
 }
