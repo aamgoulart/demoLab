@@ -9,7 +9,6 @@ import { ChartComponent } from './chart/chart.component';
 import { NgChartsModule } from 'ng2-charts';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import {MatButtonModule} from '@angular/material/button';
-import { BluetoothComponent } from './bluetooth/bluetooth.component';
 import { WebBluetoothModule } from '@manekinekko/angular-web-bluetooth';
 import { FormsModule } from '@angular/forms';
 @NgModule({
@@ -17,7 +16,6 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     ChartComponent,
     BarChartComponent,
-    BluetoothComponent
   ],
   imports: [
     BrowserModule,
