@@ -22,6 +22,8 @@ export class WebSocketService {
 
       this.socket$.subscribe((data: MessageData) => {
         this.receivedData.push(data);
+        console.log(this.receivedData.length)
+        // console.log(data)
         this.currentData = data;
       });
     }

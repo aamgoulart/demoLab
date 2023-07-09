@@ -10,7 +10,7 @@ import { WebSocketService } from '../web-socket.service';
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css']
 })
-export class ChartComponent implements OnInit , OnDestroy{
+export class ChartComponent implements OnInit, OnDestroy {
 
   message = '';
 
@@ -45,17 +45,17 @@ export class ChartComponent implements OnInit , OnDestroy{
   public lineChartOptions: ChartConfiguration['options'] = {
     elements: {
       line: {
-        tension: 0.5
+        tension: 0
       }
     },
     scales: {
       // We use this empty structure as a placeholder for dynamic theming.
       y:
-        {
-          position: 'left',
-          min: 0,
-          max: 300
-        },
+      {
+        position: 'left',
+        min: 0,
+        max: 10
+      },
       y1: {
         position: 'right',
         grid: {
@@ -74,8 +74,7 @@ export class ChartComponent implements OnInit , OnDestroy{
   startFunction() {
     const intervalId = setInterval(() => {
       this.pushOne();
-      console.log(this.webSocketService.currentData);
-    }, 500);
+    }, 1000);
 
     setTimeout(() => {
       clearInterval(intervalId);
@@ -83,16 +82,15 @@ export class ChartComponent implements OnInit , OnDestroy{
   }
 
   public pushOne(): void {
-    this.lineChartData.datasets.forEach((x, i) => {
-       x.data.push(this.webSocketService.currentData.message!);
-       if (x.data.length > 30) {
-        x.data.shift();
-       }
-   });
 
 
-    this.lineChartData?.labels?.push(`${ this.webSocketService.currentData.time }`);
-    if (this.lineChartData?.labels?.length! > 31) {
+    this.lineChartData.datasets[0].data.push(this.webSocketService.currentData.message!);
+    if (this.lineChartData.datasets[0].data.length > 300) {
+      this.lineChartData.datasets[0].data.shift();
+    }
+
+    this.lineChartData?.labels?.push(`${this.webSocketService.currentData.time}`);
+    if (this.lineChartData?.labels?.length! > 301) {
       this.lineChartData?.labels?.shift();
     }
 

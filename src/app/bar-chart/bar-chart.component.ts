@@ -14,12 +14,12 @@ import { WebSocketService } from '../web-socket.service';
 export class BarChartComponent implements OnInit, OnDestroy {
 
   constructor(public webSocketService: WebSocketService) {
-    this.webSocketService.conectarWsLento();
+    this.webSocketService.connect();
   }
 
 
   ngOnDestroy() {
-    this.webSocketService.fecharComunicacao();
+    this.webSocketService.close();
   }
 
 
@@ -65,12 +65,12 @@ export class BarChartComponent implements OnInit, OnDestroy {
   adicionaNovoElemento(): void {
    this.barChartData.datasets[0].data.push(this.webSocketService.valorAtual.message);
 
-   if (this.barChartData.datasets[0].data.length> 30) {
+   if (this.barChartData.datasets[0].data.length> 300) {
     this.barChartData.datasets[0].data.shift();
    }
 
     this.barChartData?.labels?.push(`${ this.webSocketService.valorAtual.time }`);
-    if (this.barChartData?.labels?.length! > 31) {
+    if (this.barChartData?.labels?.length! > 301) {
       this.barChartData?.labels?.shift();
     }
 
@@ -80,7 +80,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
   startFunction() {
     const intervalId = setInterval(() => {
       this.adicionaNovoElemento();
-    }, 500);
+    }, 10);
 
     setTimeout(() => {
       clearInterval(intervalId);

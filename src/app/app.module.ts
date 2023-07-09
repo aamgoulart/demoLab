@@ -11,11 +11,13 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
 import {MatButtonModule} from '@angular/material/button';
 import { WebBluetoothModule } from '@manekinekko/angular-web-bluetooth';
 import { FormsModule } from '@angular/forms';
+import { GaugeChartComponent } from './gauge-chart/gauge-chart.component';
 @NgModule({
   declarations: [
     AppComponent,
     ChartComponent,
     BarChartComponent,
+    GaugeChartComponent,
   ],
   imports: [
     BrowserModule,
